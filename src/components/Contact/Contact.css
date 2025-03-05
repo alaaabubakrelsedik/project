@@ -17,10 +17,10 @@
         border-radius: 5px 0 0 5px;
     }
    
-   button  {
+   .contact button  {
         padding: 10px;
         color: white;
-        background: #333;
+        background: #2879fe;
         border-radius: 0 5px 5px 0;
         border: none;
         position: relative; /* الحجم مختلف واللون ماثر علي الوان كل الالوان فالصفحات التانيه */
