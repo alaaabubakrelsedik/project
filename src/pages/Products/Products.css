@@ -19,6 +19,16 @@
         flex-direction: column;
     
       }
+
+      .filteritem span{
+        background-color: white;
+        color: black;
+
+      }
+
+      .filteredoption{
+        display: flex;
+      }
       .filteritem span{
         position: relative;
         /*  من من عندي */

@@ -15,12 +15,19 @@ const Products = () => {
       <div className="left">
         <div className="filteritem">
           <h2>product category</h2>
-          <input type="checkbox" id="1" value={1}/>
-          <label htmlFor="1">shoes</label>
-          <input type="checkbox" id="2" value={2}/>
-          <label htmlFor="1">coats</label>
-          <input type="checkbox" id="3" value={3}/>
-          <label htmlFor="1">tops</label>
+          <div className="filteredoption">
+              <input type="checkbox" id="1" value={1}/>
+              <label htmlFor="1">shoes</label>
+          </div>
+          <div className="filteredoption">
+              <input type="checkbox" id="2" value={2}/>
+              <label htmlFor="1">coats</label>
+          </div>
+          <div className="filteredoption">
+              <input type="checkbox" id="3" value={3}/>
+              <label htmlFor="1">tops</label>
+          </div>
+                    
         </div>
 
 
