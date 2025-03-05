@@ -5,6 +5,8 @@ margin:100px 200px
     display: flex   ;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: 50px;
+
 }
 h1{
     flex: 2;

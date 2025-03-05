@@ -8,11 +8,23 @@
       position: sticky;
       height: 100%;
       top: 50px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
     }
   
       .filteritem{
         margin-bottom: 30px;
+        display: flex;
+        flex-direction: column;
+    
       }
+      .filteritem span{
+        position: relative;
+        /*  من من عندي */
+      }
+
+     
         h2{
           font-weight: 400;
           margin-bottom: 20px;
@@ -36,5 +48,6 @@
         height: 300px;
         object-fit: cover;
         margin-bottom: 50px;
+        position: relative;
        }
     

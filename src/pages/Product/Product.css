@@ -1,14 +1,118 @@
-.images img {
-    width: 50px; 
-    height: 50px;
-    cursor: pointer;
-    margin-right: 10px;
-    
-  }
-  
-  .mainimg img {
-    width: 300px; 
-    height: auto;
-    display: block;
-  }
-  
+.product{
+  padding: 20px 50px;
+  display: flex;
+  gap: 50px;
+}
+.left{
+width: 50%;  
+display: flex;
+  gap: 20px;
+
+}
+
+ .images{
+  flex: 1;
+}
+.images img{
+  height: 150px;
+  object-fit: cover;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+ .mainimg{
+  flex:5;
+}
+
+.mainimg img{
+  max-height: 800px;
+  object-fit: cover;
+}
+
+.right{
+  flex:1;
+  display: flex;
+  flex-direction: column  ;
+  gap: 30px;
+}
+
+.price{
+  font-size: 30px;
+  color:#2879fe;
+  font-weight: 500;
+}
+
+p{
+  font-size: 18px;
+  font-weight: 300;
+  text-align: justify;
+}
+.quanity{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.quantity button{
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+}
+
+
+
+.add{
+  width: 250px;
+  padding: 10px;
+  background-color: #2879fe;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  cursor: pointer;
+  border: none;
+  font-weight: 500;
+}
+.links{
+  display: flex;
+  gap: 20px;
+}
+
+.item{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #2879fe;
+  font-size: 14px;
+}
+
+.info{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: gray;
+  font-size: 14px;
+  margin-top: 10px;
+}
+/*    من عندي */
+.info span{
+  position: relative;
+  width: 300px;
+  background-color: white;
+  color: gray;
+}
+hr{
+  width: 100%;
+  border: 1px solid lightgray;
+}
+
+
+
+
+
+
+
