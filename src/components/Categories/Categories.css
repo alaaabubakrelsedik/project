@@ -28,8 +28,9 @@
 
 }
 
-button{
+.categories button{
     position: absolute;
+    text-decoration: none;
     min-width: 100px;
     width: fit-content;
     height: 50px;

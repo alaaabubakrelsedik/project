@@ -16,8 +16,8 @@ const Contact = () => {
                 <input type="text" placeholder='enter your email...' />
                 <button>JOIN US</button>
 
-            </div>
-          
+                </div>
+
             <div className="icons">
                     <FacebookIcon/>
                     <InstagramIcon/>
@@ -26,6 +26,7 @@ const Contact = () => {
                     <PinterestIcon/>
 
                 </div>
+
         </div>
     </div>
   )
