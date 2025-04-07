@@ -1,70 +1,138 @@
-import React, { useState } from 'react'
 import './Product.css'
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import BalanceIcon from "@mui/icons-material/Balance";
+import { useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { addtocart } from '../../redux/cartreducer';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+
 const Product = () => {
-
-  const [selectedimg,setselectedimg] =useState(0);
+  const { id } = useParams();
+  const [selectedimg, setSelectedimg] = useState("img");
   const [quantity, setQuantity] = useState(0);
-  const images =[
-    "https://images.pexels.com/photos/1972115/pexels-photo-1972115.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    "https://images.pexels.com/photos/1163194/pexels-photo-1163194.jpeg?auto=compress&cs=tinysrgb&w=1600",
-]
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        // First get all products to find the documentId
+        const productsRes = await axios.get(
+          `${process.env.REACT_APP_API_URL}/products?populate=*`,
+          {
+            headers: {
+              Authorization: "bearer " + process.env.REACT_APP_API_TOKEN
+            }
+          }
+        );
+        
+        console.log('All products:', productsRes.data.data);
+        
+        // Find the product with matching id
+        const foundProduct = productsRes.data.data.find(p => p.id === parseInt(id));
+        console.log('Found product:', foundProduct);
+
+        if (foundProduct) {
+          // Now fetch the specific product using documentId
+          const productRes = await axios.get(
+            `${process.env.REACT_APP_API_URL}/products/${foundProduct.documentId}?populate=*`,
+            {
+              headers: {
+                Authorization: "bearer " + process.env.REACT_APP_API_TOKEN
+              }
+            }
+          );
+          
+          console.log('Product details:', productRes.data);
+          setProduct(productRes.data.data);
+        }
+      } catch (err) {
+        console.error('Error fetching product:', err);
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProduct();
+  }, [id]);
+
+  if (loading) return <div className="product">Loading...</div>;
+  if (error) return <div className="product">Error: {error}</div>;
+  if (!product) return <div className="product">Product not found</div>;
+
   return (
-<div className="product">
-  <div className="left ">
-    <div className="images">
-      <img src={images[0]} alt="" onClick={(e)=>setselectedimg(0)}/>
-      <img src={images[1]} alt="" onClick={(e)=>setselectedimg(1)}/>
+    <div className="product">
+      <div className="left">
+        <div className="images">
+          <img 
+            src={process.env.REACT_APP_UPLOAD_URL + product?.img?.url} 
+            alt="" 
+            onClick={() => setSelectedimg("img")}
+          />
+          <img 
+            src={process.env.REACT_APP_UPLOAD_URL + product?.img2?.url} 
+            alt="" 
+            onClick={() => setSelectedimg("img2")}
+          />
+        </div>
+        <div className="mainimg">
+          <img 
+            src={process.env.REACT_APP_UPLOAD_URL + (selectedimg === "img" ? product?.img?.url : product?.img2?.url)} 
+            alt=""
+          />
+        </div>
+      </div>
+
+      <div className="right">
+        <h1>{product?.title}</h1>
+        <span className='price'>${product?.price}</span>
+        <p>{product?.desc}</p>
+        <div className="quantity">
+          <button onClick={() => setQuantity((prev) => prev <= 0 ? 0 : prev - 1)}>-</button>
+          {quantity}
+          <button onClick={() => setQuantity((prev) => prev + 1)}>+</button>
+        </div>
+        <button 
+          className="add" 
+          onClick={() => dispatch(addtocart({
+            id: product.id,
+            title: product.title,
+            desc: product.desc,
+            price: product.price,
+            img: product.img.url,
+            quantity
+          }))}
+        >
+          <AddShoppingCartIcon/> ADD TO CART
+        </button>
+        <div className="links">
+          <div className="item">
+            <FavoriteBorderIcon/> ADD TO WISH LIST
+          </div> 
+          <div className="item"> 
+            <BalanceIcon/> ADD TO COMPARE
+          </div>     
+        </div>
+
+        <div className="info">
+          <span>Vendor: Polo</span>
+          <span>Product Type: T-Shirt</span>
+          <span>Tag: T-Shirt, Women, Top</span>
+        </div>
+           
+        <div className="info">
+          <span>DESCRIPTION</span>
+          <span>ADDITIONAL INFORMATION</span>
+          <span>FAQ</span>
+        </div>
+      </div>
     </div>
-    <div className="mainimg">
-      <img src={images[selectedimg]} alt="" />
-    </div>
-  </div>
+  );
+};
 
-
-  <div className="right">
-    <h1>Title</h1>
-    <span className='price'>199$</span>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam ratione repellat accusantium ipsa tempora non quibusdam, recusandae, nulla, aliquid possimus atque dignissimos dolor maxime quam odio blanditiis quod sint dolorem.</p>
-    <div className="quantity">
-      <button onClick={()=> setQuantity((prev)=> prev===1 ? 1 : prev- 1)}>-</button>
-      {quantity }
-      <button onClick={()=> setQuantity((prev)=>prev + 1)}>+</button>
-    </div>
-    <button className="add">
-      <AddShoppingCartIcon/> ADD TO CART
-    </button>
-    <div className="links">
-      <div className="item">
-        <FavoriteBorderIcon/> ADD TO WISH LIST
-      </div> 
-      <div className="item"> 
-        <BalanceIcon/> ADD TO COMPARE
-      </div>     
-    </div>
-
-    <div className="info">
-              <span>Vendor: Polo</span>
-              <span>Product Type: T-Shirt</span>
-              <span>Tag: T-Shirt, Women, Top</span>
-            </div>
-            <hr />
-            <div className="info">
-              <span>DESCRIPTION</span>
-              <hr />
-              <span>ADDITIONAL INFORMATION</span>
-              <hr />
-              <span>FAQ</span>
-            </div>
-
-
-  </div>
- 
-
-</div> 
- )
-}
-
-export default Product
+export default Product;

@@ -1,30 +1,35 @@
-import { useState, useEffect } from 'react'; 
+import { useEffect, useState } from "react";
+import { makerequest } from "../makerequest";
 
-import { makerequest } from "../makerequest"
+const useFetch = (url) => {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-const usefetch = (url)=>{
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+ 
 
-    const [ data, setData] = useState(null)
-    const [loading, setLoading] = useState(false)
-    const [error, setError] = useState(false)
+        const res = await makerequest.get(url);
+     
 
-    useEffect (()=>{
-        const fetchdata = async()=>{
-          try{
-            setLoading(true)
-            const res = await makerequest.get(url)
-            console.log(res)
-            setData(res.data.data)    
-          }
-          catch(err){
-            setError(true)
-          }
-          setLoading(false)
+        setData(res.data.data);
+        setError(null);
+        
+      } catch (err) {
+        console.error('Fetch error:', err.response?.data || err.message);
+        setError(err.response?.data?.error || err.message);
+        setData(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, [url]);
 
-        }
-    fetchdata();
-      },[url])
-return {data,loading,error}
-}
+  return { data, loading, error };
+};
 
-export default usefetch;
+export default useFetch;

@@ -1,54 +1,116 @@
-.navbar {
-    height: 80px;
+.navbar{
+  height: auto;
+  min-height: 80px;
+  background-color: rgb(217, 0, 125);
+  color: white;
 }
-  
-    .wrapper {
-      padding: 10px 30px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-      .item {
-        display: flex;
-        align-items: center;
-        font-size: 18px;
-      }
-  
-      .left {
-        display: flex;
-        align-items: center;
-        gap: 25px;
-      }
-      .center {
-        font-size: 30px;
-        letter-spacing: 2px;
-      }
-      .right {
-        display: flex;
-        align-items: center;
-        gap: 25px;
-      }
-        .icons {
-          display: flex;
-          gap: 15px;
-          color: #777;
-          cursor: pointer;
-        }
-          .cartIcon {
-            position: relative;
-          }
-            span {
-              font-size: 12px;
-              width: 20px;
-              height: 20px;
-              border-radius: 50%;
-              background-color: #2879fe;
-              color: white;
-              position: absolute;
-              right: -10px;
-              top: -10px;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-            }
- 
+
+.wrapper{
+  padding: 10px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.wrapper .left{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 15px;
+  justify-content: center;
+}
+
+.wrapper .left .item{
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+}
+
+.wrapper .center{
+  font-size: 30px;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+.wrapper .right{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 15px;
+  justify-content: center;
+}
+
+.navbar .link{
+  color: white;
+  text-decoration: none;
+}
+
+.navbar .icons {
+  display: flex;
+  gap: 15px;
+  color: #777;
+  cursor: pointer;
+}
+
+.icons button{
+  background-color: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.navbar .carticon {
+  position: relative;
+  color: white;
+}
+
+.navbar .icons span {
+  font-size: 12px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #2879fe;
+  color: white;
+  position: absolute;
+  right: -10px;
+  top: -10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Media Queries */
+@media screen and (min-width: 768px) {
+  .wrapper {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .wrapper .left {
+    justify-content: flex-start;
+  }
+
+  .wrapper .right {
+    justify-content: flex-end;
+  }
+
+  .wrapper .center {
+    font-size: 40px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .wrapper {
+    padding: 10px 15px;
+  }
+
+  .wrapper .left .item,
+  .wrapper .right .item {
+    font-size: 14px;
+  }
+
+  .wrapper .center {
+    font-size: 24px;
+  }
+}

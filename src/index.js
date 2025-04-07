@@ -9,10 +9,17 @@ import Products from './pages/Products/Products';
 import Product from './pages/Product/Product';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import { store, persistor } from './redux/store';
+import Register from './components/Register/Register';
+import Login from './components/Login/Login';
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from 'react-toastify';
 
 const Layout = ()=>{
   return (
-    <div>
+    <div className='app'>
       <Navbar />
       <Outlet />
       <Footer />
@@ -23,17 +30,22 @@ const Layout = ()=>{
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <Provider store={store}>
+      <PersistGate loading={"loading"} persistor={persistor}>
     <BrowserRouter>
-
-
     <Routes>
      <Route path="/" element={<Layout />} >
       <Route index element={<Home />} />
       <Route path="/products/:id?" element={<Products />} />
       <Route path="/product/:id?" element={<Product />} />
-      </Route>
+      <Route path="/register" element={<Register />} />
+      <Route path="/login" element={<Login />} />
+       </Route>
     </Routes>
-  </BrowserRouter>  
+    <ToastContainer />
+  </BrowserRouter> 
+  </PersistGate> 
+  </Provider>
   </React.StrictMode>
 );
 

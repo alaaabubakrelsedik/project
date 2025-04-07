@@ -4,17 +4,19 @@ import "./Card.css"
 import axios from 'axios'
 
 const Card = ({item}) => {
+ /*  console.log("UPLOAD URL:", process.env.REACT_APP_UPLOAD_URL);
+  console.log("ENV VARIABLES:", process.env);
+ */
+
   return (
+    
     <Link to={`/product/${item.id}`}>
     <div className='card'> 
       <div className="cardimage">
         {item.isnew &&<span className='isnew'>New Season</span>}
-       <img src={`http://localhost:1337${item.img?.url}`} alt="Product" className='mainImg' />
-       <img src={`http://localhost:1337${item.img2?.url}`} alt="Product" className='secondImg' />
-
-        {/*  <img src={item.img?.url} alt="Product" className='mainImg' /> */}
-        {/* الصورة مش شغاله */}
-        {/* <img src={item.img2} alt="" className='secondImg' /> */}     
+        <img src={process.env.REACT_APP_UPLOAD_URL+item?.img?.url} alt="Product" className='mainImg' />
+        <img src={process.env.REACT_APP_UPLOAD_URL+item?.img2?.url} alt="Product" className='secondImg' />
+ 
    </div>
       <h2>{item.title}</h2>
       <div className="prices">

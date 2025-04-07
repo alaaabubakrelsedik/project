@@ -30,7 +30,7 @@ const Slider = () => {
             <img src ={data[1]} alt="" />
             <img src ={data[2]} alt="" />
         </div>
-        <div className="icons">
+        <div className="slidericons">
             <div className="icon" onClick={prevslide}><ArrowBackOutlinedIcon/></div>
             <div className="icon" onClick={nextslide}><ArrowForwardOutlinedIcon/></div>
         </div>

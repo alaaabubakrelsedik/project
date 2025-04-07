@@ -1,23 +1,23 @@
 .contact{
-    background-color: #2879fe;
+    background-color: black;
     color: white;
     padding: 15px;
     display: flex;
     justify-content: center;
 }
-    .wrapper{
+.contact  .wrapper{
       width: 50%;
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
-    input{
+    .contact   input{
         padding: 10px;
         border: none;
         border-radius: 5px 0 0 5px;
     }
    
-    button  {
+    .contact button  {
         padding: 10px;
         color: white;
         background: grey;

@@ -1,0 +1,77 @@
+.login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: linear-gradient(
+      rgba(255, 255, 255, 0.5),
+      rgba(255, 255, 255, 0.5)
+    ),
+    url("https://images.pexels.com/photos/6984650/pexels-photo-6984650.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")
+      center;
+  background-size: cover;
+}
+
+.login-container {
+  background-color: white;
+  padding: 20px 60px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+.login-container h1 {
+  color: teal;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  font-size: 14px;
+  color: gray;
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  padding: 10px;
+  border: none;
+  border-bottom: 1px solid gray;
+  outline: none;
+}
+
+.login-container button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  background-color: teal;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+  margin-top: 10px;
+}
+
+.register-link {
+  margin-top: 15px;
+  font-size: 14px;
+  color: gray;
+}
+
+.register-link a {
+  color: teal;
+  text-decoration: none;
+  font-weight: bold;
+} 

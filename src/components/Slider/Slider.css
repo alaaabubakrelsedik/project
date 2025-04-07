@@ -17,7 +17,7 @@
       }
     
   
-    .icons{
+    .slidericons{
       width: fit-content;
       display: flex;
       position: absolute;
@@ -27,7 +27,7 @@
       gap: 10px;
       margin: auto;
     }
-      .icon{
+    .slidericons .icon{
         width: 50px;
         height: 50px;
         border: 1px solid #999;
